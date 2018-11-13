@@ -374,6 +374,7 @@ class URATAHrpsysConfigurator(HrpsysConfigurator):
         stp.eefm_k1 = [-1.40928, -1.40928]
         stp.eefm_k2 = [-0.398194, -0.398194]
         stp.eefm_k3 = [-0.178433, -0.178433]
+        stp.joint_control_mode = OpenHRP.RobotHardwareService.POSITION_TORQUE
         stp.swing2landing_transition_time = 0.05
         stp.landing_phase_time = 0.1
         stp.landing2support_transition_time = 0.5
