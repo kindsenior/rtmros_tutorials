@@ -700,6 +700,8 @@ if(EXISTS ${jsk_models_MODEL_DIR}/JAXON_RED/l_hand_attached_link.dae)
 endif()
 endif()
 
+attach_sensor_and_endeffector_to_staro_urdf(JAXON_BLUE JAXON_BLUE.urdf JAXON_BLUE_SENSORS.urdf jaxon_blue.yaml)
+
 # for SampleRobot
 attach_sensor_and_endeffector_to_hrp2jsk_urdf(SampleRobot SampleRobot.urdf
   SampleRobot_WH_SENSORS.urdf samplerobot.yaml)
