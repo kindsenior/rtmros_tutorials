@@ -267,7 +267,17 @@ class URATAHrpsysConfigurator(HrpsysConfigurator):
         stp.eefm_k1=[-1.48412,-1.48412]
         stp.eefm_k2=[-0.486727,-0.486727]
         stp.eefm_k3=[-0.198033,-0.198033]
+        stp.swing2landing_transition_time = 0.05
+        stp.landing_phase_time = 0.1
+        stp.landing2support_transition_time = 0.5
+        stp.joint_control_mode = OpenHRP.RobotHardwareService.TORQUE
+        leg_gains = {"support_pgain":[5,30,10,5,0.15,0.12], "support_dgain":[70,70,50,10,0.1,0.1], "landing_pgain":[5,30,5,1,0.1,0.1], "landing_dgain":[70,70,50,10,0.1,0.1]}
+        arm_gains = {"support_pgain":[100,100,100,100,100,100,100,100], "support_dgain":[100,100,100,100,100,100,100,100],
+                     "landing_pgain":[100,100,100,100,100,100,100,100], "landing_dgain":[100,100,100,100,100,100,100,100]}
+        stp.joint_servo_control_parameters = map (lambda x : OpenHRP.StabilizerService.JointServoControlParameter(**x), [leg_gains,leg_gains,arm_gains,arm_gains])
         self.st_svc.setParameter(stp)
+        # rh setting
+        self.rh_svc.setJointControlMode("all",OpenHRP.RobotHardwareService.TORQUE)
         # Abc setting
         #gg=self.abc_svc.getGaitGeneratorParam()[1]
         #gg.stride_parameter=[0.1,0.05,10.0]
