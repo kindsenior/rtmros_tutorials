@@ -209,6 +209,16 @@ class JAXON_BLUEHrpsysConfigurator(URATAHrpsysConfigurator):
         stp.eefm_k1 = [-1.40928, -1.40928]
         stp.eefm_k2 = [-0.398194, -0.398194]
         stp.eefm_k3 = [-0.178433, -0.178433]
+        # for torque control
+        stp.joint_control_mode = OpenHRP.AutoBalanceStabilizerService.JOINT_TORQUE
+        stp.swing2landing_transition_time = 0.05
+        stp.landing_phase_time = 0.1
+        stp.landing2support_transition_time = 0.5
+        leg_gains = {"support_pgain":[5,30,10,5,0.5,0.1], "support_dgain":[70,70,50,40,1,3], "landing_pgain":[5,30,10,1,0.5,0.1], "landing_dgain":[70,70,50,10,1,3]} # for walking
+        # leg_gains = {"support_pgain":[5,30,10,5,0.5,0.1], "support_dgain":[70,70,50,40,10,3], "landing_pgain":[5,30,10,1,0.5,0.1], "landing_dgain":[70,70,50,10,1,3]} # for high jump
+        # leg_gains = {"support_pgain":[5,30,10,5,2,0.1], "support_dgain":[70,70,50,40,20,3], "landing_pgain":[5,30,10,1,0.5,0.1], "landing_dgain":[70,70,50,10,1,3]} # for toe jump
+        arm_gains = {"support_pgain":[100,100,100,100,100,100,100], "support_dgain":[100,100,100,100,100,100,100], "landing_pgain":[100,100,100,100,100,100,100], "landing_dgain":[100,100,100,100,100,100,100]} # normal arm gain
+        stp.joint_servo_control_parameters = map (lambda x : OpenHRP.AutoBalanceStabilizerService.JointServoControlParameter(**x), [leg_gains,leg_gains,arm_gains,arm_gains])
 
         # stp.swing2landing_transition_time = 0.05
         # stp.landing_phase_time = 0.1
