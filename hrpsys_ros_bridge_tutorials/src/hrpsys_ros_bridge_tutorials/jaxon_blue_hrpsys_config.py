@@ -239,8 +239,7 @@ class JAXON_BLUEHrpsysConfigurator(URATAHrpsysConfigurator):
         self.setDefaultSTParameters()
 
     def setDefaultRHSettings(self):
-        pass
-        # self.setJointControlMode("all", OpenHRP.RobotHardwareService.TORQUE)
+        self.setJointControlMode("all", OpenHRP.RobotHardwareService.TORQUE)
 
 if __name__ == '__main__':
     hcf = JAXON_BLUEHrpsysConfigurator()
